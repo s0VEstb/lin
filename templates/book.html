@@ -108,6 +108,8 @@
         </div>
     </div>
 </nav>
+<!--Подключение к header.html-->
+{% include 'header.html' %}
 <!-- Контент с карточками -->
 <div class="container mt-4 content">
     <div class="row justify-content-center">
@@ -119,6 +121,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ i.title }}</h5>
                     <p class="card-text">{{ i.start_book }}</p>
+                    <p class="card-text">Рейтинг: {{ i.average_rating|default:"нет рейтинга" }}</p>
                     <a href="/book_detail/{{ i.id }}/" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
@@ -139,3 +142,4 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+{% include 'footer.html' %}

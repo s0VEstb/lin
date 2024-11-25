@@ -92,6 +92,7 @@
     </div>
 </nav>
 
+{% include 'header.html' %}
 <!-- Контент с информацией о книге -->
 <div class="container mt-4">
     <div class="book-card">
@@ -116,6 +117,18 @@
         <div class="comment">
             <p> (2024-09-24): Отличная книга! Рекомендую! <strong>Оценка:</strong> 5</p>
         </div>
+        <p>Общий рейтинг книги - {{ book_id.average_rating|default:"нет рейтинга" }}</p>
+<!--        {% if book_id.review_books.exists %}-->
+<!--        <div class="comment">-->
+<!--            <p> {{ book_id.review_books.first.created_at }}: {{ book_id.review_books.first.description }} <strong>Оценка:</strong> {{ book_id.review_books.first.mark }}</p>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+
+        {% for i in book_id.review_books.all %}
+        <div class="comment">
+            <p> {{ i.created_at }}: {{ i.description }} <strong>Оценка: </strong> {{ i.mark }}</p>
+        </div>
+        {% endfor %}
      
     </div>
 </div>
@@ -131,3 +144,4 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+{% include 'footer.html' %}
